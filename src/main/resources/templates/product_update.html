@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Atnaujinti duomenis</title>
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+	rel="stylesheet">
+<link th:href="@{/style/material-dashboard.css}" rel="stylesheet">
+
+
+</head>
+<body class="g-sidenav-show  bg-gray-200">
+	<div th:replace="~{fragments/sidebar.html :: sidebar}"></div>
+	<main
+		class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+		<div th:insert="~{fragments/navigation.html :: navigation}"></div>
+
+
+<div class="container-fluid py-4">
+			<div class="row">
+				<div class="col-12">
+					<div class="card my-4">
+						<div
+							class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+							<div
+								class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
+								<h6 class="text-white text-capitalize ps-3">Atnaujinti produkto duomenis</h6>
+							</div>
+						</div>
+						<div class="card-body px-7 pb-2">
+							<div class="table-responsive p-0">
+								<form th:action="'/product/update/'+${product.id}" method="post" th:object="${product}">
+									<input type = "hidden" name = "id" th:value = "*{id}" >
+									<div class="input-group input-group-static mb-4">
+										<label class="">Produkto pavadinimas</label>
+										<input type = "text" class = "form-control" name = "name" th:value="*{name}">
+									</div>
+									<div class="input-group input-group-static mb-4">
+										<label class="">Svoriss</label>
+										<input type = "text" class = "form-control" name = "weight" th:value="*{weight}">
+									</div>
+									<div class="input-group input-group-static mb-4">
+										<label class="">Mato vnt.</label>
+										<input type = "number" class = "form-control" name = "unit" th:value="*{unit}">
+									</div>
+									<div class="input-group input-group-static mb-4">
+										<label class="">Kaina</label>
+										<input type = "" class = "form-control" name = "price" th:value="*{price}">
+									</div>
+									
+										<div class="text-center">
+											<button type="submit" class="btn btn-success btn-lg w-60">Išsaugoti </button>
+										</div>
+								
+								
+								</form>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script th:src="@{/script/bootstrap.bundle.js}"></script>
+	<script th:src="@{/script/bootstrap.min.js}"></script>
+	<script th:src="@{/script/popper.js}"></script>
+	<script th:src="@{/script/material-dashboard.js}"></script>
+</body>
+</html>
