@@ -28,6 +28,7 @@ public class RecipeService {
 		old.setDescription(recipe.getDescription());
 		old.setDuration(recipe.getDuration());
 		old.setServing(recipe.getServing());
+		old.setFileName(recipe.getFileName());
 		recipeRepository.save(old);
 		return old;
 	}

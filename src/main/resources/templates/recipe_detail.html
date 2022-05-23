@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Atnaujinti duomenis</title>
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+	rel="stylesheet">
+<link th:href="@{/style/material-dashboard.css}" rel="stylesheet">
+
+
+</head>
+<body class="g-sidenav-show  bg-gray-200">
+	<div th:replace="~{fragments/sidebar.html :: sidebar}"></div>
+	<main
+		class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+		<div th:insert="~{fragments/navigation.html :: navigation}"></div>
+
+
+		<div class="container-fluid py-4">
+			<div class="row">
+				<div class="col-12">
+					<div class="card my-4" th:object="${recipe}">
+						<div
+							class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+							<div
+								class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
+								<h6 class="text-white text-capitalize ps-3" th:text="*{name}">Atnaujinti
+									receptą</h6>
+							</div>
+						</div>
+						<div class="card-body px-7 pb-2">
+							<div class="">
+								<div class="row">
+
+									<div class="col-7"></div>
+
+									<div class="col-5">
+										<img style="width: 100%;" th:src="'/recipe/img/'+${recipe.id}"
+											src="'/recipe/img/'+${recipe.id}"
+											class="rounded mx-auto d-block" alt="user1">
+									</div>
+								</div>
+
+								<div class="row mt-5">
+									<div class="col-7">
+										<p class="h6 mb-3">Aprašymas</p>
+										<blockquote class="blockquote">
+											<p class="mb-0 ps-2" th:text="*{description}"></p>
+										</blockquote>
+									</div>
+
+									<div class="col-5">
+										<ul class="list-group">
+											<li
+												class="list-group-item d-flex justify-content-between align-items-center">
+												Gaminimo trukmė, min <span
+												class="badge badge-pill badge-md bg-gradient-warning"
+												th:text="*{duration}"></span>
+											</li>
+											<li
+												class="list-group-item d-flex justify-content-between align-items-center">
+												Porcijų skaičius <span
+												class="badge badge-pill badge-md bg-gradient-warning"
+												th:text="*{serving}"></span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script th:src="@{/script/bootstrap.bundle.js}"></script>
+	<script th:src="@{/script/bootstrap.min.js}"></script>
+	<script th:src="@{/script/popper.js}"></script>
+	<script th:src="@{/script/material-dashboard.js}"></script>
+</body>
+</html>

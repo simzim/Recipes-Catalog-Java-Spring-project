@@ -1,10 +1,14 @@
 package lt.simzim.recipescatalog.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +31,9 @@ public class Product {
 	@Column
 	private Integer unit;
 	
+	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+	private List<Component> components;
+	
 	public Product() {
 	}
 
@@ -44,6 +51,13 @@ public class Product {
 		this.id = id;
 	}
 
+	public List<Component> getComponents() {
+		return components;
+	}
+
+	public void setComponents(List<Component> components) {
+		this.components = components;
+	} 
 	public String getName() {
 		return name;
 	}

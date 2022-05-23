@@ -55,8 +55,7 @@
 												class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Porcijų
 												skaičius</th>
 											<th
-												class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sukūrimo
-												data</th>
+												class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ingridientai</th>
 
 											<th
 												class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Veiksmai</th>
@@ -67,7 +66,8 @@
 											<td>
 												<div class="d-flex px-2 py-1">
 													<div>
-														<img src="../assets/img/team-2.jpg"
+														<img th:src="'/recipe/img/'+${recipe.id}"
+															src="'/recipe/img/'+${recipe.id}"
 															class="avatar avatar-sm me-3 border-radius-lg"
 															alt="user1">
 													</div>
@@ -83,11 +83,18 @@
 											<td class="align-middle text-center text-sm">
 												<p th:text="${recipe.serving}"
 													class="text-xs font-weight-bold mb-0"></p>
-											<td class="align-middle text-center"><span
-												class="text-secondary text-xs font-weight-bold"></span></td>
+											<td class="px-2 align-middle text-center">
+												<a class="text-secondary font-weight-bold text-xs px-2 d-flex align-items-center" th:href="'/component/new/'+${recipe.id}">
+													<div class="text-secondary text-center me-2 justify-content-center">
+														<i class="material-icons opacity-10">library_add</i>
+													</div> <span class="nav-link-text ms-1">Įtraukti produktą</span>
+												</a>
+											
+											
+											</td>
 											<td class="px-2 align-middle text-center">
 												<a
-													th:href="'/recipe/update/'+${recipe.id}"
+													th:href="'/recipe/detail/'+${recipe.id}"
 													class="text-secondary font-weight-bold text-xs px-2"
 													data-toggle="tooltip" data-original-title="Edit user"> <i
 													class="material-icons opacity-10">preview</i>
