@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name="recipes")
@@ -19,10 +22,13 @@ public class Recipe {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, length = 64)
+	@NotNull(message = "Recepto pavadinimas privalomas")
+	@Length(min = 3, max = 200, message = "Recepto pavadinimas turi būti ilgesnis nei 3 simboliai ir trumpesnis už 200 simbolius")
 	private String name;
 	
-	@Column
+	@Column(columnDefinition = "TEXT")
+	@NotNull(message = "Recepto aprašymas privalomas")
 	private String description;
 	
 	@Column
@@ -38,9 +44,6 @@ public class Recipe {
 	private List<Component> components;
 
 
-	
-	
-	
 	public Recipe(String name, String description, Integer duration, Integer serving, String fileName) {
 		super();
 		this.name = name;

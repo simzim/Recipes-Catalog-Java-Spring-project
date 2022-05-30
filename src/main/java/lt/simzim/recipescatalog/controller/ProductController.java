@@ -1,8 +1,11 @@
 package lt.simzim.recipescatalog.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,14 +30,20 @@ public class ProductController {
 	
 	@GetMapping("/new")
 	public String productNew(Model model) {
+		model.addAttribute("product", new Product());
 		return "product_new";
 	}
 	
 	@PostMapping("/new")
 	public String addProduct(
+			@Valid
 			@ModelAttribute Product product, 
+			BindingResult result,
 			Model model) {
 
+		if (result.hasErrors()) {
+			return "product_new";
+		}
 		productService.addProduct(product);
 		return "redirect:/product/";
 	}
@@ -49,9 +58,14 @@ public class ProductController {
 
 	@PostMapping("/update/{id}")
 	public String productUpdate(
+			@Valid
 			@ModelAttribute Product product,
+			BindingResult result, 
 			@PathVariable("id") Integer id
 			) {
+		if (result.hasErrors()) {
+			return "product_update";
+		}
 		productService.updateProduct(product);
 		return "redirect:/product/";
 	}

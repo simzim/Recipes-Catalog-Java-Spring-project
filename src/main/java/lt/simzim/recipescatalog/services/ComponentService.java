@@ -22,6 +22,10 @@ public class ComponentService {
 		return componentRepository.findAll();
 	}
 	
+	public List<Component> findAllByRecipe(Integer recipe_id){
+		return componentRepository.findAllByRecipe(recipe_id);
+	}
+	
 	public Component getComponent(Integer id) {
 		return componentRepository.getById(id);
 	}

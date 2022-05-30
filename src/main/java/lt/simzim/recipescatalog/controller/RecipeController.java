@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import lt.simzim.recipescatalog.entities.Recipe;
+import lt.simzim.recipescatalog.services.ComponentService;
 import lt.simzim.recipescatalog.services.FileStorageService;
 import lt.simzim.recipescatalog.services.RecipeService;
 
@@ -28,6 +29,12 @@ public class RecipeController {
 	
 	@Autowired
 	FileStorageService storageService;
+	
+	@Autowired
+	ComponentService componentService;
+	
+	
+	
 	
 	
 	@GetMapping("/")
@@ -50,9 +57,7 @@ public class RecipeController {
 		
 		Recipe r = new Recipe(name, description, duration, serving, file.getOriginalFilename());
 		r = recipeService.addRecipe(r);
-		
 		storageService.store(file, r.getId().toString());
-		
 		return "redirect:/recipe/";
 	}
 	

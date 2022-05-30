@@ -33,23 +33,69 @@
 						</div>
 						<div class="card-body px-7 pb-2">
 							<div class="table-responsive p-0">
-								<form action="/product/new" method="post">
-							
+								<form action="/product/new" method="post" th:object="${product}">
+									
+									
 									<div class="input-group input-group-static mb-4">
-										<label class="">Produkto pavadinimas</label>
-										<input type = "text" class = "form-control" name = "name">
+										<label class="">Produkto pavadinimas<span class="required">*</span></label>
+										<input 
+											type = "text" 
+											class = "form-control" 
+											name = "name"
+											th:value="*{name}"
+										
+											>
+										<div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
+											<ul>
+												<li th:each="klaida:${#fields.errors('name')}" th:text="${klaida}"></li>
+											</ul>
+										</div>
+									
 									</div>
 									<div class="input-group input-group-static mb-4">
 										<label class="">Svoris</label>
-										<input type = "number" class = "form-control" name = "weight">
+										<input 
+											type = "text" 
+											class = "form-control" 
+											name = "weight"
+											th:value="*{weight}"
+											
+											>
+										<div class="alert alert-danger" th:if="${#fields.hasErrors('weight')}">
+											<ul>
+												<li th:each="klaida:${#fields.errors('weight')}" th:text="${klaida}"></li>
+											</ul>
+										</div>
 									</div>
 									<div class="input-group input-group-static mb-4">
 										<label class="">Matavimo vienetai</label>
-										<input type = "number" class = "form-control" name = "unit">
+										<input 
+											type = "text" 
+											class = "form-control" 
+											name = "unit"
+											th:value="*{unit}"
+										
+											>
+										<div class="alert alert-danger" th:if="${#fields.hasErrors('unit')}">
+											<ul>
+												<li th:each="klaida:${#fields.errors('unit')}" th:text="${klaida}"></li>
+											</ul>
+										</div>	
 									</div>
 									<div class="input-group input-group-static mb-4">
 										<label class="">Kaina</label>
-										<input type = "" class = "form-control" name = "price">
+										<input 
+											type = "text" 
+											class = "form-control" 
+											name = "price"
+											th:value="*{price}"
+										
+											>
+										<div class="alert alert-danger" th:if="${#fields.hasErrors('price')}">
+											<ul>
+												<li th:each="klaida:${#fields.errors('price')}" th:text="${klaida}"></li>
+											</ul>
+										</div>	
 									</div>
 										<div class="text-center">
 											<button type="submit" class="btn btn-success btn-lg w-60">Išsaugoti </button>
