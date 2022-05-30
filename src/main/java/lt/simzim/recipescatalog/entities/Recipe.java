@@ -29,6 +29,7 @@ public class Recipe {
 	
 	@Column(columnDefinition = "TEXT")
 	@NotNull(message = "Recepto aprašymas privalomas")
+	@Length(min = 3, message = " turi būti ilgesnis nei 3 simboliai")
 	private String description;
 	
 	@Column
