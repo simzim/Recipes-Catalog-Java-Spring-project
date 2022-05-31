@@ -32,7 +32,7 @@
 									katalogas</h6>
 
 
-								<a class="d-flex nav-link text-white " href="/recipe/new">
+								<a sec:authorize="isAuthenticated()" class="d-flex nav-link text-white " href="/recipe/new">
 									<div
 										class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 										<i class="material-icons opacity-10">library_add</i>
@@ -57,7 +57,7 @@
 											<th
 												class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ingridientai</th>
 
-											<th
+											<th 
 												class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Veiksmai</th>
 										</tr>
 									</thead>
@@ -83,8 +83,9 @@
 											<td class="align-middle text-center text-sm">
 												<p th:text="${recipe.serving}"
 													class="text-xs font-weight-bold mb-0"></p>
-											<td class="px-2 align-middle text-center">
-												<a class="text-secondary font-weight-bold text-xs px-2 d-flex align-items-center" th:href="'/component/new/'+${recipe.id}">
+											<td class="px-2 align-middle text-center" >
+												<a sec:authorize="isAuthenticated()"
+													class="text-secondary font-weight-bold text-xs px-2 d-flex align-items-center" th:href="'/component/new/'+${recipe.id}">
 													<div class="text-secondary text-center me-2 justify-content-center">
 														<i class="material-icons opacity-10">library_add</i>
 													</div> <span class="nav-link-text ms-1">Įtraukti produktą</span>
@@ -99,13 +100,13 @@
 													data-toggle="tooltip" data-original-title="Edit user"> <i
 													class="material-icons opacity-10">preview</i>
 												</a> 
-												<a
+												<a 	sec:authorize="isAuthenticated()"
 													th:href="'/recipe/update/'+${recipe.id}"
 													class="text-secondary font-weight-bold text-xs px-2"
 													data-toggle="tooltip" data-original-title="Edit user"> <i
 													class="material-icons opacity-10">edit_note</i>
 												</a> 
-												<a 
+												<a 	sec:authorize="isAuthenticated()"
 													th:href="'/recipe/delete/'+${recipe.id}"
 													class="text-secondary font-weight-bold text-xs px-2"
 													data-toggle="tooltip" data-original-title="Edit user"> <i

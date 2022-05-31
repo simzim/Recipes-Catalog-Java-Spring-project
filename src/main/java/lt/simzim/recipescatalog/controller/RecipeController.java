@@ -110,8 +110,9 @@ public class RecipeController {
 	@GetMapping("/detail/{id}")
 	public String detailRecipe(@PathVariable("id") Integer id, 
 								Model model) {
-		model.addAttribute("recipe", recipeService.getRecipe(id));
 		
+		
+		model.addAttribute("recipe", recipeService.getRecipe(id));
 		return "recipe_detail";
 	}
 	

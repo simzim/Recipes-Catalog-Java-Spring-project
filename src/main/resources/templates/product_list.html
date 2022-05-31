@@ -32,7 +32,8 @@
 									sąrašas</h6>
 
 
-								<a class="d-flex nav-link text-white " href="/product/new">
+								<a 
+									class="d-flex nav-link text-white " href="/product/new">
 									<div
 										class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 										<i class="material-icons opacity-10">library_add</i>
@@ -81,12 +82,14 @@
 													class="text-xs font-weight-bold mb-0"></p>
 											</td>
 
-											<td class="px-2 align-middle text-center">
-											 <a th:href="'/product/update/'+${product.id}"
+											<td class="px-2 align-middle text-center"><a
+												
+												th:href="'/product/update/'+${product.id}"
 												class="text-secondary font-weight-bold text-xs px-2"
 												data-toggle="tooltip" data-original-title="Edit user"> <i
 													class="material-icons opacity-10">edit_note</i>
-											</a> <a th:href="'/product/delete/'+${product.id}"
+											</a> <a 
+												th:href="'/product/delete/'+${product.id}"
 												class="text-secondary font-weight-bold text-xs px-2"
 												data-toggle="tooltip" data-original-title="Edit user"> <i
 													class="material-icons opacity-10">delete_forever</i>
