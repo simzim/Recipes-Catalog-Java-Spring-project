@@ -39,7 +39,7 @@
 									method="post"
 									th:object="${recipe}" 
 									enctype="multipart/form-data">
-									
+									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 									<input type="hidden" name="id" th:value="*{id}">
 									<div class="input-group input-group-static mb-4">
 										<label class="">Recepto pavadinimas</label> 

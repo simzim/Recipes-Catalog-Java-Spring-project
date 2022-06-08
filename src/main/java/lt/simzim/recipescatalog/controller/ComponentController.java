@@ -27,25 +27,14 @@ public class ComponentController {
 	
 	@Autowired
 	RecipeService recipeService;
-//	
-//
-//	@GetMapping("/detail/{id}")
-//	public String getComponents(@PathVariable("id") Integer recipe_id, 
-//								Model model) {
-//		model.addAttribute("components", componentService.findAllByRecipe(recipe_id));
-//		
-//		return "/detail/{id}";
-//	}
-//	
-//	
-//	
-//	
+
+	
 	@GetMapping("/new/{id}")
 	public String newComponent(@PathVariable("id") Integer id, 
 								Model model) {
-	model.addAttribute("component", new Component());
+	//model.addAttribute("component", new Component());
+	model.addAttribute("components", componentService.findAllByRecipeId(id));
 	model.addAttribute("recipe", recipeService.getRecipe(id));
-	System.out.println("recepto ID " + recipeService.getRecipe(id));  
 	model.addAttribute("products", productService.getProducts());
 		return "component_new";
 	}
@@ -64,5 +53,10 @@ public class ComponentController {
 		return "redirect:/component/new/{id}";
 	}
 	
+	@GetMapping("/delete/{id}")
+	public String componentDelete(@PathVariable("id") Integer id) {
+		componentService.deleteComponent(id);
+		return "redirect:/recipe/";
+	}
 	
 }

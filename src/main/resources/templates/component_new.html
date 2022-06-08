@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Pridėti Ingridientą</title>
-	<link rel="stylesheet" type="text/css"
-		href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-	<link
-		href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-		rel="stylesheet">
-	<link th:href="@{/style/material-dashboard.css}" rel="stylesheet">
+<meta charset="utf-8">
+<title>Pridėti Ingridientą</title>
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+	rel="stylesheet">
+<link th:href="@{/style/material-dashboard.css}" rel="stylesheet">
 </head>
 <body class="g-sidenav-show  bg-gray-200">
 	<div th:replace="~{fragments/sidebar.html :: sidebar}"></div>
@@ -20,45 +20,80 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="card my-4">
-						
-						<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-							<div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
-								<h6 class="text-white text-capitalize ps-3">Pridėti naują ingridientą</h6>
+
+						<div
+							class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+							<div
+								class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
+								<h6 class="text-white text-capitalize ps-3">Pridėti naują
+									ingridientą</h6>
 							</div>
 						</div>
-						
+
 						<div class="card-body px-7 pb-2">
 							<div class="table-responsive p-0">
+								<div th:object="${recipe}">
+									<input type="hidden" name="recipeId" th:value="*{id}">
+									<div th:text="*{name}" class="mb-3 h4"></div>
+									<div class="mb-3 h6">Aprašymas:</div>
+									<div th:text="*{description}" class="mb-3"></div>
+								</div>
+
+								<table class="table">
+									<tr>
+										<th>Ingridientai</th>
+										<th>kiekis</th>
+										<th></th>
+									</tr>
+
+									<tr th:each="component: ${components}">
+										<td th:text="${component.product.name}"></td>
+										<td th:text="${component.quantity}"></td>
 
 
-								<form th:action="'/component/new/' + ${recipe.id}" method="post" th:object="${component}">>
+										<td style="width: 200px;">
+										
+										<a 
+												th:href="'/component/delete/'+${component.id}"
+												class="text-secondary font-weight-bold text-xs px-2"
+												data-toggle="tooltip" data-original-title="Edit user"> <i
+													class="material-icons opacity-10">delete_forever</i>
+											</a>
+										
+										</td>
+									</tr>
+								</table>
 
 
-									<div th:object="${recipe}">
-										<input type="hidden" name="recipeId" th:value="*{id}">
-										<div th:text="*{name}" class="mb-3 h4"></div>
-										<div class="mb-3 h6">Aprašymas:</div>
-										<div th:text="*{description}" class="mb-3"></div>
+
+
+
+								<form th:action="'/component/new/' + ${recipe.id}" method="post"
+									th:object="${component}">
+									
+
+									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+
+
+							 	<div class="input-group input-group-static mb-4">
+										 <input type="hidden"
+											class="form-control" name="recipeId" th:value="${recipe.id}">
 									</div>
-						
+
 
 									<div class="input-group input-group-static mb-4">
-										<label class="">Rcepto ID</label> 
-										<input type="" class="form-control" name="recipeId" th:value="${recipe.id}">
-									</div>
-
-
-									<div class="input-group input-group-static mb-4">
-										<label for="" class="ms-0">Produktai:</label> 
-										<select class="form-control" name="productId">
+										<label for="" class="ms-0">Produktai:</label> <select
+											class="form-control" name="productId">
 											<option value="null">Nepasirinktas</option>
-											<option th:each="product: ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+											<option th:each="product: ${products}"
+												th:value="${product.id}" th:text="${product.name}"></option>
 										</select>
 									</div>
-										
+
 									<div class="input-group input-group-static mb-4">
-										<label class="">Kiekis</label> 
-										<input type="" class="form-control" name="quantity">
+										<label class="">Kiekis</label> <input type=""
+											class="form-control" name="quantity">
 									</div>
 
 									<button type="submit" class="btn btn-success">Išsaugoti</button>
@@ -70,9 +105,6 @@
 			</div>
 		</div>
 	</main>
-	<script th:src="@{/script/bootstrap.bundle.js}"></script>
-	<script th:src="@{/script/bootstrap.min.js}"></script>
-	<script th:src="@{/script/popper.js}"></script>
-	<script th:src="@{/script/material-dashboard.js}"></script>
+
 </body>
 </html>

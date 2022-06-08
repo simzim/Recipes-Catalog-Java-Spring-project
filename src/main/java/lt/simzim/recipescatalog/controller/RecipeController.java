@@ -111,8 +111,9 @@ public class RecipeController {
 	public String detailRecipe(@PathVariable("id") Integer id, 
 								Model model) {
 		
-		
+		model.addAttribute("components", componentService.findAllByRecipeId(id));
 		model.addAttribute("recipe", recipeService.getRecipe(id));
+		System.out.println("recepto id: " + id);
 		return "recipe_detail";
 	}
 	
